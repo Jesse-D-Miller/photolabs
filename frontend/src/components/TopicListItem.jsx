@@ -1,5 +1,6 @@
 import "../styles/TopicListItem.scss";
 
+
 const sampleDataForTopicListItem = {
   id: 1,
   slug: "topic-1",
@@ -7,9 +8,11 @@ const sampleDataForTopicListItem = {
 };
 
 const TopicListItem = () => {
+  // const {label} = sampleDataForTopicList;
+
   return (
     <div className="topic-list__item">
-      {/* Insert React */}
+      <span>{sampleDataForTopicListItem.label}</span>
     </div>
   );
 };
