@@ -1,7 +1,8 @@
 import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
-  const { location, urls, user } = props.sampleDataForPhotoListItem;
+  const { location, urls, user } = props.photo;
+  console.log(props, "props")
 
   return (
     <div className="photo-list__item">
