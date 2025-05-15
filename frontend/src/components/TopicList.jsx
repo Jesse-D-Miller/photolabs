@@ -1,12 +1,11 @@
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
-const TopicList = (props) => {
-  const { topics } = props;
+const TopicList = ({topics}) => {
 
   const dynamicArrayOfTopics = topics.map((topic) => {
     const topicId = topic.id;
-  
+
     return (
       <TopicListItem
         key={topicId}

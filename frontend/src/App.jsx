@@ -1,6 +1,6 @@
 import PhotoList from './components/PhotoList';
-import TopicList from './components/TopicList';
 import './App.scss';
+import TopNavigation from './components/TopNavigationBar';
 import topics from './mocks/topics';
 import photos from "./mocks/photos";
 import { useState } from 'react';
@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <TopicList topics={topics} />
+      <TopNavigation topics={topics} />
       <PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite} />
     </div>
   );
