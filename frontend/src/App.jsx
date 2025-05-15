@@ -1,11 +1,8 @@
 import PhotoListItem from './components/PhotoListItem';
-// import PhotoList from './components/PhotoList';
-import './App.scss';
+import PhotoList from './components/PhotoList';
 import photos from './mocks/photos';
 import { useState } from 'react';
-
-// import "./styles/PhotoList.scss";
-
+import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
@@ -26,7 +23,9 @@ const App = () => {
     }));
   };
 
-   const dynamicArrayOfPhotos = photos.map((photo) => {
+
+  //this takes the photos from the database and puts them into an array
+  const dynamicArrayOfPhotos = photos.map((photo) => {
     const photoId = photo.id;
     const favouriteStatus = favourites[photoId] || 'notfavourited';
 
@@ -42,9 +41,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* <ul className="photo-list"> */}
-      {dynamicArrayOfPhotos}
-      {/* </ul> */}
+      <PhotoList dynamicArrayOfPhotos={dynamicArrayOfPhotos} />
     </div>
   );
 };
