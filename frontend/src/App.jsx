@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <TopicList />
+      <TopicList topics={topics} />
       <PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite} />
     </div>
   );

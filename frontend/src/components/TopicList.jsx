@@ -1,32 +1,23 @@
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
-// const sampleDataForTopicList = [
-//   {
-//     id: 1,
-//     slug: "topic-1",
-//     title: "Nature",
-//   },
-//   {
-//     id: 2,
-//     slug: "topic-2",
-//     title: "Travel",
-//   },
-//   {
-//     id: 3,
-//     slug: "topic-3",
-//     title: "People",
-//   },
-// ];
+const TopicList = (props) => {
+  const { topics } = props;
 
-const TopicList = () => {
+  const dynamicArrayOfTopics = topics.map((topic) => {
+    const topicId = topic.id;
+  
+    return (
+      <TopicListItem
+        key={topicId}
+        topic={topic}
+      />
+    );
+  });
+
   return (
     <div className="top-nav-bar__topic-list">
-      <TopicListItem />
-      <TopicListItem />
-      <TopicListItem />
-      <TopicListItem />
-      <TopicListItem />
+      {dynamicArrayOfTopics}
     </div>
   );
 };
