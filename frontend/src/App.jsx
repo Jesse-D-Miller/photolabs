@@ -5,30 +5,25 @@ import { useState } from 'react';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [likes, setLikes] = useState({});
+  const [favourites, setFavourites] = useState({});
 
-  // const toggleLike = () => setLikeStatus((likeStatus === "liked") ? "notLiked" : "liked");
-
-  const toggleLike = (photoId) => {
-    setLikes(prevLikes => ({
-      ...prevLikes,
-      [photoId]: prevLikes[photoId] === 'liked' ? 'notLiked' : 'liked'
+  const toggleFavourite = (photoId) => {
+    setFavourites(prevFavourites => ({
+      ...prevFavourites,
+      [photoId]: prevFavourites[photoId] === 'favourited' ? 'notfavourited' : 'favourited'
     }));
   };
 
-
-  // let dynamicArrayOfPhotos = photos.map((photo, i) => <PhotoListItem key={i} photo={photo} toggleLike={toggleLike} likeStatus={likeStatus} />)
-
    const dynamicArrayOfPhotos = photos.map((photo) => {
     const photoId = photo.id;
-    const likeStatus = likes[photoId] || 'notLiked';
+    const favouriteStatus = favourites[photoId] || 'notfavourited';
 
     return (
       <PhotoListItem
         key={photoId}
         photo={photo}
-        toggleLike={() => toggleLike(photoId)}
-        likeStatus={likeStatus}
+        toggleFavourite={() => toggleFavourite(photoId)}
+        favouriteStatus={favouriteStatus}
       />
     );
   });
