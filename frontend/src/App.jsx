@@ -1,13 +1,10 @@
-import PhotoListItem from './components/PhotoListItem';
 import PhotoList from './components/PhotoList';
-import photos from './mocks/photos';
-import { useState } from 'react';
 import './App.scss';
+import photos from "./mocks/photos";
+import { useState } from 'react';
 
-// Note: Rendering a single component to build components in isolation
 const App = () => {
   const [favourites, setFavourites] = useState({});
-
 
   //togles the favourite icon on each photo by photo.id and uses ...prevfavourites to remember an object of the prev values 
   //this is the mutable -> immutable thing we did in lecture
@@ -24,24 +21,11 @@ const App = () => {
   };
 
 
-  //this takes the photos from the database and puts them into an array
-  const dynamicArrayOfPhotos = photos.map((photo) => {
-    const photoId = photo.id;
-    const favouriteStatus = favourites[photoId] || 'notfavourited';
-
-    return (
-      <PhotoListItem
-        key={photoId}
-        photo={photo}
-        toggleFavourite={() => toggleFavourite(photoId)}
-        favouriteStatus={favouriteStatus}
-      />
-    );
-  });
+//this used to be where map was now its in photo list
 
   return (
     <div className="App">
-      <PhotoList dynamicArrayOfPhotos={dynamicArrayOfPhotos} />
+      <PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite} />
     </div>
   );
 };
