@@ -1,11 +1,15 @@
 import "../styles/PhotoListItem.scss";
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const { location, urls, user } = props.photo;
-  console.log(props, "props")
+  const { photo, toggleLike, likeStatus } = props;
+  const { location, urls, user } = photo;
 
   return (
     <div className="photo-list__item">
+
+      <PhotoFavButton toggleLike={toggleLike} likeStatus={likeStatus} />
+
       <div>
         <img className="photo-list__image" src={urls.regular} alt={`photolabs photo by ${user.username}`} />
       </div>
