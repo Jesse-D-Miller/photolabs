@@ -23,15 +23,16 @@ const App = () => {
     }));
   };
 
-  const toggleModal = () => {
-    setModalOpen((modalOpen === true) ? false : true);
+  const toggleModal = (photo) => {
+    console.log("photo Id",photo.id);
+    setModalOpen((modalOpen) ? false : photo);
   }
 
   return (
     <div className="App">
       <HomeRoute photos={photos} topics={topics} favourites={favourites} toggleFavourite={toggleFavourite} toggleModal={toggleModal} />
       {modalOpen && (
-        <PhotoDetailsModal toggleModal={toggleModal} />
+        <PhotoDetailsModal toggleModal={toggleModal} photo={modalOpen} />
       )}
     </div>
   );

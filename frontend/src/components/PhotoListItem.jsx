@@ -11,7 +11,7 @@ const PhotoListItem = (props) => {
       <PhotoFavButton toggleFavourite={toggleFavourite} favouriteStatus={favouriteStatus} />
 
       <div>
-        <img onClick={toggleModal} className="photo-list__image" src={urls.regular} alt={`photolabs photo by ${user.username}`} />
+        <img onClick={() => toggleModal(photo)} className="photo-list__image" src={urls.regular} alt={`photolabs photo by ${user.username}`} />
       </div>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={user.profile} alt={`${user.username} profile picture`} />
