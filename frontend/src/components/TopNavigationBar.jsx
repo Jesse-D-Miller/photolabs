@@ -4,6 +4,7 @@ import FavBadge from './FavBadge';
 
 const TopNavigation = ({topics, favourites}) => {
 
+  //checks if any photos have been favourited
   const isObjectEmpty = (obj) => Object.keys(obj).length === 0;
 
   return (
