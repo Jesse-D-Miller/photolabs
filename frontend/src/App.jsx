@@ -17,6 +17,7 @@ const App = () => {
   //    we’ll add or overwrite below
   //   }
   const toggleFavourite = (photoId) => {
+    console.log(favourites)
     setFavourites(prevFavourites => ({
       ...prevFavourites,
       [photoId]: prevFavourites[photoId] === 'favourited' ? 'notfavourited' : 'favourited'
@@ -32,7 +33,7 @@ const App = () => {
     <div className="App">
       <HomeRoute photos={photos} topics={topics} favourites={favourites} toggleFavourite={toggleFavourite} toggleModal={toggleModal} />
       {modalOpen && (
-        <PhotoDetailsModal toggleModal={toggleModal} photo={modalOpen} />
+        <PhotoDetailsModal toggleModal={toggleModal} photo={modalOpen} toggleFavourite={toggleFavourite} favourites={favourites} />
       )}
     </div>
   );

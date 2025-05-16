@@ -1,8 +1,26 @@
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
+import PhotoFavButton from '../components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ toggleModal, photo }) => {
+const PhotoDetailsModal = ({ toggleModal, photo, toggleFavourite, favourites }) => {
   const { similar_photos } = photo;
+
+  const dynamicArrayOfSimilarPhotos = Object.values(similar_photos).map((similar_photo) => {
+    const similar_photoId = similar_photo.id;
+    const favouriteStatus = favourites[similar_photoId] || 'notfavourited';
+
+    return (
+      <div>
+        <PhotoFavButton toggleFavourite={() => toggleFavourite(similar_photo.id)} favouriteStatus={favouriteStatus} />
+        <img
+          className='photo-details-modal__image'
+          key={photo.id}
+          src={similar_photo.urls.regular}
+          alt={`similar photo ${photo.id}`}
+        />
+      </div>
+    );
+  });
 
 
   return (
@@ -14,9 +32,10 @@ const PhotoDetailsModal = ({ toggleModal, photo }) => {
           </button>
         </div>
         <div >
+          <PhotoFavButton toggleFavourite={() => toggleFavourite(photo.id)} favouriteStatus={favourites[photo.id]} />
           <img
             className="photo-details-modal__image"
-            src={photo.urls.regular}
+            src={photo.urls.regular} //ai says to make this photo.urls.full but its too large
             alt={'a really cool photo of something really cool'}
           />
         </div>
@@ -37,56 +56,12 @@ const PhotoDetailsModal = ({ toggleModal, photo }) => {
       <div className="photo-details-modal__images">
         <h3 className="photo-details-modal__header">Similar Photos</h3>
         <div className="similar-photos">
-          {Object.values(similar_photos).map((similar_photo) => (
-            <img
-              key={similar_photo.id}
-              src={similar_photo.urls.regular}
-              alt={`similar photo ${similar_photo.id}`}
-              className="photo-details-modal__image"
-            />
-          ))}
+          {dynamicArrayOfSimilarPhotos}
         </div>
       </div>
     </div>
 
 
-
-
-
-
-
-
-
-
-
-    //       <div className='photo-details-modal__header' >
-    //         <div>
-    //           {/* <PhotoFavButton toggleFavourite={toggleFavourite} favouriteStatus={favouriteStatus} /> */}
-    //           <img className='photo-details-modal__image' src={photo.urls.full} alt='a really cool photo of something really cool' />
-    //         </div>
-    //         <div className="photo-details-modal__top-bar" >
-    //           <img className="photo-details-modal__photographer-profile" src={photo.user.profile} alt={`${photo.user.username} profile picture`} />
-    //           <div className="photo-details-modal__photographer-info" >
-    //             {photo.user.name}
-    //             <div className="photo-details-modal__photographer-location">
-    //               {`${photo.location.city}, ${photo.location.country}`}
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <div className='photo-details-modal__images'>
-    //         {Object.values(similar_photos).map((similar_photo) => {
-    //           console.log(similar_photo)
-    //           return (
-    //             < img
-    //               key={similar_photo.id}
-    //               src={similar_photo.urls.regular}
-    //               alt={`similar photo ${similar_photo.id}`}
-    //             />
-    //           )
-    //         })}
-    //       </div>
-    //     </div>
   )
 };
 
