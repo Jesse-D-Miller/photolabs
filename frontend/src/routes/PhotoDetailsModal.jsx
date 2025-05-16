@@ -10,15 +10,31 @@ const PhotoDetailsModal = ({ toggleModal, photo, toggleFavourite, favourites }) 
     const favouriteStatus = favourites[similar_photoId] || 'notfavourited';
 
     return (
-      <div>
-        <PhotoFavButton toggleFavourite={() => toggleFavourite(similar_photo.id)} favouriteStatus={favouriteStatus} />
-        <img
-          className='photo-details-modal__image'
-          key={photo.id}
-          src={similar_photo.urls.regular}
-          alt={`similar photo ${photo.id}`}
-        />
-      </div>
+      <>
+        <div>
+          <PhotoFavButton toggleFavourite={() => toggleFavourite(similar_photo.id)} favouriteStatus={favouriteStatus || 'notfavourited'} />
+          <img
+            key={photo.id}
+            className='photo-details-modal__image'
+            photo={photo}
+            src={similar_photo.urls.regular}
+            alt={`similar photo ${photo.id}`}
+          />
+        </div>
+     <div className="photo-details-modal__photographer-details">
+          <img
+            className="photo-details-modal__photographer-profile"
+            src={similar_photo.user.profile}
+            alt={`${similar_photo.user.username} profile picture`}
+          />
+          <div className="photo-details-modal__photographer-info">
+            {similar_photo.user.name}
+            <div className="photo-details-modal__photographer-location">
+              {`${similar_photo.location.city}, ${similar_photo.location.country}`}
+            </div>
+          </div>
+        </div>
+      </>
     );
   });
 
@@ -32,7 +48,7 @@ const PhotoDetailsModal = ({ toggleModal, photo, toggleFavourite, favourites }) 
           </button>
         </div>
         <div >
-          <PhotoFavButton toggleFavourite={() => toggleFavourite(photo.id)} favouriteStatus={favourites[photo.id]} />
+          <PhotoFavButton toggleFavourite={() => toggleFavourite(photo.id)} favouriteStatus={favourites[photo.id] || 'notfavourited'} />
           <img
             className="photo-details-modal__image"
             src={photo.urls.regular} //ai says to make this photo.urls.full but its too large
