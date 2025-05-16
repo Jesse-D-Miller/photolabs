@@ -31,7 +31,7 @@ const App = () => {
     <div className="App">
       <HomeRoute photos={photos} topics={topics} favourites={favourites} toggleFavourite={toggleFavourite} toggleModal={toggleModal} />
       {modalOpen && (
-        <PhotoDetailsModal />
+        <PhotoDetailsModal toggleModal={toggleModal} />
       )}
     </div>
   );
