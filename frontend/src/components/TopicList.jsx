@@ -1,22 +1,18 @@
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
-const TopicList = ({topics}) => {
-
-  const dynamicArrayOfTopics = topics.map((topic) => {
-    const topicId = topic.id;
-
-    return (
-      <TopicListItem
-        key={topicId}
-        topic={topic}
-      />
-    );
-  });
+const TopicList = (props) => {
+  const { topics, selectedTopic, toggleSelectedTopic } = props;
 
   return (
     <div className="top-nav-bar__topic-list">
-      {dynamicArrayOfTopics}
+      {topics.map((topic) => (
+        <TopicListItem
+          key={topic.id}
+          topic={topic}
+          onClick={() => toggleSelectedTopic(topic.id)}
+        />
+      ))}
     </div>
   );
 };

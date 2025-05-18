@@ -9,15 +9,26 @@ const App = () => {
   const {
     favourites,
     modalOpen,
+    selectedTopic,
+    toggleSelectedTopic,
     toggleFavourite,
     toggleModal,
     photoData,
-    topicData
+    topicData,
+    topicByPhotoData
   } = useApplicationData();
 
   return (
     <div className="App">
-      <HomeRoute photos={photoData} topics={topicData} favourites={favourites} toggleFavourite={toggleFavourite} toggleModal={toggleModal} />
+      <HomeRoute
+        photos={selectedTopic ? topicByPhotoData : photoData}
+        topics={topicData}
+        selectedTopic={selectedTopic}
+        toggleSelectedTopic={toggleSelectedTopic}
+        favourites={favourites}
+        toggleFavourite={toggleFavourite}
+        toggleModal={toggleModal}
+      />
       {modalOpen && (
         <PhotoDetailsModal toggleModal={toggleModal} photo={modalOpen} toggleFavourite={toggleFavourite} favourites={favourites} />
       )}

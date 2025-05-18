@@ -1,10 +1,13 @@
 import { useReducer, useEffect } from "react";
 
 const ACTIONS = {
+  TOGGLE_SELECTED_TOPIC: 'TOGGLE_SELECTED_TOPIC',
   TOGGLE_FAVOURITE: 'TOGGLE_FAVOURITE',
   TOGGLE_MODAL: 'TOGGLE_MODAL',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA'
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
+
 };
 
 const reducer = (state, action) => {
@@ -40,6 +43,20 @@ const reducer = (state, action) => {
         topicData: action.payload
       };
 
+    case 'GET_PHOTOS_BY_TOPICS':
+      return {
+        ...state,
+        topicByPhotoData: action.payload
+      };
+
+    case 'TOGGLE_SELECTED_TOPIC':
+      const topicId = action.payload;
+
+      return {
+        ...state,
+        selectedTopic: topicId
+      };
+
     default:
       throw new Error(`unhandled action type: ${action.type}`);
   }
@@ -50,7 +67,8 @@ const useApplicationData = () => {
     favourites: {},
     modalOpen: false,
     photoData: [],
-    topicData: []
+    topicData: [],
+    selectedTopic: null
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -59,27 +77,53 @@ const useApplicationData = () => {
     fetch("http://localhost:8001/api/photos")
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+      .catch((error) => {
+        console.error("Failed to fetch photos:", error);
+      });
   }, []);
 
   useEffect(() => {
     fetch("http://localhost:8001/api/topics")
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+      .catch((error) => {
+        console.error("Failed to fetch photos:", error);
+      });
   }, []);
 
+  useEffect(() => {
+    if (state.selectedTopic) {
+      fetch(`http://localhost:8001/api/topics/${state.selectedTopic}/photos`)
+        .then((response) => response.json())
+        .then((data) => {
+          dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data });
+        })
+        .catch((error) => {
+          console.error("Failed to fetch photos:", error);
+        });
+    }
+  }, [state.selectedTopic]);
+
   const toggleFavourite = (photoId) => {
-    dispatch({ type: 'TOGGLE_FAVOURITE', payload: photoId });
+    dispatch({ type: ACTIONS.TOGGLE_FAVOURITE, payload: photoId });
   };
 
   const toggleModal = (photo) => {
-    dispatch({ type: 'TOGGLE_MODAL', payload: photo });
+    dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: photo });
+  };
+
+  const toggleSelectedTopic = (topicId) => {
+    dispatch({ type: ACTIONS.TOGGLE_SELECTED_TOPIC, payload: topicId })
   };
 
   return {
+    selectedTopic: state.selectedTopic,
     favourites: state.favourites,
     modalOpen: state.modalOpen,
     photoData: state.photoData,
     topicData: state.topicData,
+    topicByPhotoData: state.topicByPhotoData,
+    toggleSelectedTopic,
     toggleFavourite,
     toggleModal
   }
