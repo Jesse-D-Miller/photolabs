@@ -15,12 +15,14 @@ const App = () => {
     toggleModal,
     photoData,
     topicData,
-    topicByPhotoData
+    topicByPhotoData,
+    clearSelectedTopic
   } = useApplicationData();
 
   return (
     <div className="App">
       <HomeRoute
+        clearSelectedTopic={clearSelectedTopic}
         photos={selectedTopic ? topicByPhotoData : photoData}
         topics={topicData}
         selectedTopic={selectedTopic}

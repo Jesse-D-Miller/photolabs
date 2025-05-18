@@ -3,7 +3,7 @@ import PhotoListItem from "./PhotoListItem";
 
 
 const PhotoList = (props) => {
-  const { photos, favourites, toggleFavourite, toggleModal } = props;
+  const { photos = [], favourites, toggleFavourite, toggleModal } = props;
 
   //this takes the photos from the database and puts them into an array
   const dynamicArrayOfPhotos = photos.map((photo) => {

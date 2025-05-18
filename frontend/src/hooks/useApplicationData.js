@@ -6,8 +6,8 @@ const ACTIONS = {
   TOGGLE_MODAL: 'TOGGLE_MODAL',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
-
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  CLEAR_SELECTED_TOPIC: 'CLEAR_SELECTED_TOPIC'
 };
 
 const reducer = (state, action) => {
@@ -56,6 +56,13 @@ const reducer = (state, action) => {
         ...state,
         selectedTopic: topicId
       };
+
+    case 'CLEAR_SELECTED_TOPIC':
+      return {
+        ...state,
+        selectedTopic: null,
+        topicByPhotoData: []
+      }
 
     default:
       throw new Error(`unhandled action type: ${action.type}`);
@@ -116,7 +123,12 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.TOGGLE_SELECTED_TOPIC, payload: topicId })
   };
 
+  const clearSelectedTopic = () => {
+    dispatch({ type: ACTIONS.CLEAR_SELECTED_TOPIC });
+  };
+
   return {
+    clearSelectedTopic,
     selectedTopic: state.selectedTopic,
     favourites: state.favourites,
     modalOpen: state.modalOpen,
