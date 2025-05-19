@@ -18,6 +18,8 @@ const App = () => {
     clearSelectedTopic
   } = useApplicationData();
 
+  //all information passed down through HomeRoute
+  //conditional on Modal using short circuit so that it only displays on click event
   return (
     <div className="App">
       <HomeRoute
