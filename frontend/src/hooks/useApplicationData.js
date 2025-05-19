@@ -65,7 +65,7 @@ const reducer = (state, action) => {
         ...state,
         selectedTopic: null,
         topicByPhotoData: []
-      }
+      };
 
     default:
       throw new Error(`unhandled action type: ${action.type}`);
