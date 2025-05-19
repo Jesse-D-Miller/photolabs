@@ -5,6 +5,8 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from '../components/PhotoFavButton';
 import PhotoList from '../components/PhotoList';
 
+
+//takes in information from app.jsx and photolist and favbutton in order to generate modal and give it state consistency with the rest of the app
 const PhotoDetailsModal = (props) => {
   const { toggleModal, photo, toggleFavourite, favourites } = props;
 
@@ -23,7 +25,7 @@ const PhotoDetailsModal = (props) => {
 
         <img
           className="photo-details-modal__image"
-          src={photo.urls.regular} //ai says to make this photo.urls.full but its too large
+          src={photo.urls.regular}
           alt={'a really cool photo of something really cool'}
         />
 
@@ -49,7 +51,7 @@ const PhotoDetailsModal = (props) => {
         <div className="photo-details-modal__images">
           <PhotoList photos={Object.values(props.photo.similar_photos)} favourites={props.favourites} toggleFavourite={props.toggleFavourite} />
         </div>
-        
+
       </div>
     </div>
 

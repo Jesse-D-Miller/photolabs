@@ -6,6 +6,7 @@ import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
 
 const App = () => {
+  //information form dataset via useApplicationData
   const {
     favourites,
     modalOpen,

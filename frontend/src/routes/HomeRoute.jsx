@@ -2,6 +2,8 @@ import '../styles/HomeRoute.scss';
 import PhotoList from '../components/PhotoList';
 import TopNavigation from '../components/TopNavigationBar';
 
+
+//this route contains all visual information in the app
 const HomeRoute = (props) => {
   const { topics, photos, favourites, toggleFavourite, toggleModal, selectedTopic, toggleSelectedTopic, clearSelectedTopic } = props;
 

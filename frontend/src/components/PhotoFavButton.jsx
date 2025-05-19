@@ -1,10 +1,9 @@
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
+//this component is responsible for favourite button, it handles the click and the actual change in appearance when the botton is clicked
 const PhotoFavButton = (props) => {
   const { toggleFavourite, favouriteStatus } = props
-
-  // const handleClick = () => toggleFavourite();
 
   return (
     <div className="photo-list__fav-icon" onClick={toggleFavourite}>

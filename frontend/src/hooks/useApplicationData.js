@@ -1,5 +1,6 @@
 import { useReducer, useEffect } from "react";
 
+//action definitions for readability
 const ACTIONS = {
   TOGGLE_SELECTED_TOPIC: 'TOGGLE_SELECTED_TOPIC',
   TOGGLE_FAVOURITE: 'TOGGLE_FAVOURITE',
@@ -10,6 +11,8 @@ const ACTIONS = {
   CLEAR_SELECTED_TOPIC: 'CLEAR_SELECTED_TOPIC'
 };
 
+
+// reducer switch cases for each action, they all return previous states using spread operator applied to objects. the second property of each is the most current value of the state
 const reducer = (state, action) => {
   switch (action.type) {
     case 'TOGGLE_FAVOURITE':
@@ -80,6 +83,7 @@ const useApplicationData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  //async datafetching using useEffect hook and useRuducer via dispatch
   useEffect(() => {
     fetch("http://localhost:8001/api/photos")
       .then((response) => response.json())
@@ -127,6 +131,7 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.CLEAR_SELECTED_TOPIC });
   };
 
+  //this information is all passed to the App.jsx file so that the data from the API fetches can be disseminated throuhgout the components
   return {
     clearSelectedTopic,
     selectedTopic: state.selectedTopic,
