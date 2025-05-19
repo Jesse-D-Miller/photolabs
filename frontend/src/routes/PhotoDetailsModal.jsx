@@ -5,7 +5,6 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from '../components/PhotoFavButton';
 import PhotoList from '../components/PhotoList';
 
-
 //takes in information from app.jsx and photolist and favbutton in order to generate modal and give it state consistency with the rest of the app
 const PhotoDetailsModal = (props) => {
   const { toggleModal, photo, toggleFavourite, favourites } = props;
@@ -21,7 +20,6 @@ const PhotoDetailsModal = (props) => {
       <div className="photo-details-modal__images">
 
         <PhotoFavButton toggleFavourite={() => toggleFavourite(photo.id)} favouriteStatus={favourites[photo.id] || 'notfavourited'} />
-
 
         <img
           className="photo-details-modal__image"
