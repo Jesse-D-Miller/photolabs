@@ -12,13 +12,13 @@ Click each of these links and follow the instructions in order to setup your bac
 
 ## Final Product
 
-!["Screenshot of home route photos"](https://github.com/Jesse-D-Miller/photolabs/blob/main/docs/home-route-photos.png)
-
 !["Screenshot of homeroute photos and the navbar"](https://github.com/Jesse-D-Miller/photolabs/blob/main/docs/main-route-photos-with-navbar.png)
 
-!["Screenshot of modal main image"](https://github.com/Jesse-D-Miller/photolabs/blob/main/docs/modal-enlarged-image.png)
+!["Screenshot of home route photos"](https://github.com/Jesse-D-Miller/photolabs/blob/main/docs/home-route-photos.png)
 
 !["Screenshot of photo card"](https://github.com/Jesse-D-Miller/photolabs/blob/main/docs/photo-card.png)
+
+!["Screenshot of modal main image"](https://github.com/Jesse-D-Miller/photolabs/blob/main/docs/modal-enlarged-image.png)
 
 !["Screenshot of modal related images"](https://github.com/Jesse-D-Miller/photolabs/blob/main/docs/realated-photos-modal-view.png)
 
