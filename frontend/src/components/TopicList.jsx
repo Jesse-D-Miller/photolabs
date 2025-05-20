@@ -6,7 +6,7 @@ import TopicListItem from "./TopicListItem";
 //this creates an onClick enent handler and passes it down to TopicListItem 
 //gathers topics from dataset and displays them in the navbar
 const TopicList = (props) => {
-  const { topics, toggleSelectedTopic } = props;
+  const { topics, toggleSelectedTopic, toggleShowLikedOnly } = props;
 
   return (
     <div className="top-nav-bar__topic-list">
@@ -14,7 +14,10 @@ const TopicList = (props) => {
         <TopicListItem
           key={topic.id}
           topic={topic}
-          onClick={() => toggleSelectedTopic(topic.id)}
+          onClick={() => {
+            toggleSelectedTopic(topic.id);
+            toggleShowLikedOnly(false);
+          }}
         />
       ))}
     </div>

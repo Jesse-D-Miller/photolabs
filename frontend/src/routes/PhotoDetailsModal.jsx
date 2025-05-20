@@ -19,13 +19,15 @@ const PhotoDetailsModal = (props) => {
       {/*-----------------------------------> matches structure for PhotoListItem */}
       <div className="photo-details-modal__images">
 
-        <PhotoFavButton toggleFavourite={() => toggleFavourite(photo.id)} favouriteStatus={favourites[photo.id] || 'notfavourited'} />
+        <div className="photo-details-modal__image-wrapper">
+          <PhotoFavButton toggleFavourite={() => toggleFavourite(photo.id)} favouriteStatus={favourites[photo.id] || 'notfavourited'} />
 
-        <img
-          className="photo-details-modal__image"
-          src={photo.urls.regular}
-          alt={'a really cool photo of something really cool'}
-        />
+          <img
+            className="photo-details-modal__image"
+            src={photo.urls.regular}
+            alt={'a really cool photo of something really cool'}
+          />
+        </div>
 
         <div className="photo-details-modal__photographer-details">
           <img

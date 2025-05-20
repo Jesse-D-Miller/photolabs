@@ -11,6 +11,13 @@
   border-radius: 12px;
 }
 
+//added so center modal image as per mockup
+.photo-details-modal__image-wrapper {
+  position: relative; 
+  width: fit-content;
+  margin: 0 auto; 
+}
+
 .photo-details-modal__close-button {
   background-color: white;
   border: none;
@@ -25,13 +32,13 @@
 }
 
 .photo-details-modal__images {
-  margin-left: 36px;
-  margin-top: 8px;
+  margin: 0 auto;
+  width: 95%;
 }
 
 .photo-details-modal__image {
   max-width: 95%;
-  border-radius: 8px;
+  display: block;
 }
 
 .photo-details-modal__top-bar {
@@ -75,4 +82,18 @@
   font-weight: 700;
   font-size: 12px;
   margin-left: 8px;
+}
+
+.photo-details-modal .photo-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 24px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.photo-details-modal .photo-list:after {
+  display: none; // disables ghost item
 }

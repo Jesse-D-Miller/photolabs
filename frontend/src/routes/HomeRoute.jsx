@@ -5,7 +5,7 @@ import TopNavigation from '../components/TopNavigationBar';
 
 //this route contains all visual information in the app
 const HomeRoute = (props) => {
-  const { topics, photos, favourites, toggleFavourite, toggleModal, selectedTopic, toggleSelectedTopic, clearSelectedTopic } = props;
+  const { topics, photos, favourites, toggleFavourite, toggleModal, selectedTopic, toggleSelectedTopic, clearSelectedTopic, toggleShowLikedOnly, showLikedOnly } = props;
 
   return (
     <div className="home-route">
@@ -15,6 +15,8 @@ const HomeRoute = (props) => {
         selectedTopic={selectedTopic}
         toggleSelectedTopic={toggleSelectedTopic}
         clearSelectedTopic={clearSelectedTopic}
+        toggleShowLikedOnly={toggleShowLikedOnly}
+        showLikedOnly={showLikedOnly}
       />
       <PhotoList
         photos={photos}

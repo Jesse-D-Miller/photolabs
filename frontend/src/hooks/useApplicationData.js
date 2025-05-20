@@ -8,7 +8,9 @@ const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
-  CLEAR_SELECTED_TOPIC: 'CLEAR_SELECTED_TOPIC'
+  CLEAR_SELECTED_TOPIC: 'CLEAR_SELECTED_TOPIC',
+  SHOW_LIKED_PHOTOS: 'SHOW_LIKED_PHOTOS',
+  TOGGLE_SHOW_LIKED: 'TOGGLE_SHOW_LIKED'
 };
 
 
@@ -67,6 +69,14 @@ const reducer = (state, action) => {
         topicByPhotoData: []
       };
 
+    case 'TOGGLE_SHOW_LIKED':
+      return {
+        ...state,
+        showLikedOnly: action.payload !== undefined //conditional to reset when topic is clicked
+          ? action.payload
+          : !state.showLikedOnly
+      };
+
     default:
       throw new Error(`unhandled action type: ${action.type}`);
   }
@@ -78,7 +88,8 @@ const useApplicationData = () => {
     modalOpen: false,
     photoData: [],
     topicData: [],
-    selectedTopic: null
+    selectedTopic: null,
+    showLikedOnly: false
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -131,8 +142,14 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.CLEAR_SELECTED_TOPIC });
   };
 
+  const toggleShowLikedOnly = (value) => {
+    dispatch({ type: ACTIONS.TOGGLE_SHOW_LIKED, payload: value });
+  };
+
   //this information is all passed to the App.jsx file so that the data from the API fetches can be disseminated throuhgout the components
   return {
+    toggleShowLikedOnly,
+    showLikedOnly: state.showLikedOnly,
     clearSelectedTopic,
     selectedTopic: state.selectedTopic,
     favourites: state.favourites,
